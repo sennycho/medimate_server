@@ -1,4 +1,5 @@
 import * as adminUserRepository from '../../data/admin/user.js';
+// merge test
 
 export async function showAll(req, res){
     const page = req.query.page || 1;
