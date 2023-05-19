@@ -1,4 +1,5 @@
 import * as dataRepository from '../../data/admin/announcement.js';
+// merge test
 
 // 생성
 export async function createAnnounce(req, res, next){
