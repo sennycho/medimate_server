@@ -1,4 +1,4 @@
-import { Drugstore } from '../../db/drugstore.js';
+import { Drugstore } from '../../db/admin/drugstore.js';
 import {Op} from 'sequelize';
 
 // 생성
@@ -8,8 +8,8 @@ export async function insert(info){
 }
 
 
-// 약국이름으로 찾기 출력
-export async function getDrugName(P_NAME, page){
+// 약국이름으로 찾기
+export async function getByDrugName(P_NAME, page){
     let limit = 10;
     let offset = (page - 1) * limit;
     return Drugstore.findAndCountAll({
@@ -20,6 +20,11 @@ export async function getDrugName(P_NAME, page){
         ],
         where: { P_NAME: { [Op.like]: `%${P_NAME}%` } }
     });
+}
+
+// 약국번호로 찾기
+export async function getByDrugNum(P_NUM){
+    return Drugstore.findByPk(P_NUM)
 }
 
 // 전체 출력 (페이지네이션 기능 추가)
@@ -37,8 +42,8 @@ export async function getAll(page){
 
 
 // 수정
-export async function update(td_pharm){
-    return Drugstore.findByPk(td_pharm.P_NUM)
+export async function update(id, td_pharm){
+    return Drugstore.findByPk(id)
     .then((oldDrug) => {
         oldDrug.P_NUM = td_pharm.P_NUM;
         oldDrug.P_NAME = td_pharm.P_NAME;

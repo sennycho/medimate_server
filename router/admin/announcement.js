@@ -6,11 +6,13 @@ const router = express.Router();
 
 router.post('/', AnnounceController.createAnnounce);
 
-router.get('/:id', AnnounceController.getAnnounceByTitle);
+router.get('/:id', AnnounceController.searchAnnounceNum);
+
+router.get('/:id', AnnounceController.searchAnnounceByTitle);
 
 router.get('/', AnnounceController.getAllAnnounce);
 
-router.put('/', AnnounceController.updateAnnounce);
+router.put('/:id', AnnounceController.updateAnnounce);
 
 router.delete('/:id', AnnounceController.deleteAnnounce);
 

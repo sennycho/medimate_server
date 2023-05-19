@@ -1,5 +1,5 @@
-import { Announcement } from '../../db/announcement.js';
-import { User } from '../../db/user.js';
+import { Announcement } from '../../db/admin/announcement.js';
+import { User } from '../../db/admin/user.js';
 import { Sequelize } from 'sequelize';
 import {Op} from 'sequelize';
 
@@ -28,20 +28,19 @@ export async function insert(info){
 }
 
 
-// 부분 출력
-export async function getByNum(A_NUM){
-    return Announcement.findOne( {where: { A_NUM }});
+// 공지사항번호로 찾기
+export async function getByAnnounceNum(A_NUM){
+    return Announcement.findByPk(A_NUM)
 }
-
-// 제목으로 찾기 출력
-export async function getByTitle({A_TITLE}, page){
+// 공지사항 제목으로 찾기
+export async function getByTitle(A_TITLE, page){
     let limit = 10;
     let offset = (page - 1) * limit;
     return Announcement.findAndCountAll({
         limit,
         offset,
         order: [
-            ['U_NUM', 'DESC']
+            ['A_NUM', 'DESC']
         ],
         where: { A_TITLE: { [Op.like]: `%${A_TITLE}%` } }
     });
@@ -55,14 +54,14 @@ export async function getAll(page){
         limit,
         offset,
         order: [
-            ['U_NUM', 'DESC']
+            ['A_NUM', 'DESC']
         ]
     });
 }
 
 // 수정
-export async function update(td_announcement){
-    return Announcement.findOne(td_announcement.A_NUM)
+export async function update(id, td_announcement){
+    return Announcement.findByPk(id)
     .then((oldAnnounce) => {
             oldAnnounce.A_TITLE = td_announcement.A_TITLE;
             oldAnnounce.A_CONTENT = td_announcement.A_CONTENT;
@@ -72,8 +71,8 @@ export async function update(td_announcement){
 
 
 // 삭제
-export async function remove(U_NUM){
-    return Announcement.findByPk(U_NUM)
+export async function remove(A_NUM){
+    return Announcement.findByPk(A_NUM)
     .then((Announcement) => {
         Announcement.destroy();
     });
