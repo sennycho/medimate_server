@@ -6,11 +6,13 @@ const router = express.Router();
 
 router.post('/', DrugstoreController.createDrugstore);
 
-router.get('/:id', DrugstoreController.getByDrugName);
+router.get('/:id', DrugstoreController.searchDrugNum);
+
+router.get('/:id', DrugstoreController.searchDrugName);
 
 router.get('/', DrugstoreController.getAllDrugstore);
 
-router.put('/', DrugstoreController.updateDrugstore);
+router.put('/:id', DrugstoreController.updateDrugstore);
 
 router.delete('/:id', DrugstoreController.deleteDrugstore);
 
