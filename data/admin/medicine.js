@@ -43,7 +43,6 @@ import { Medicine } from "../../db/medicine.js";
     export async function update(id,medicine){
         return findByNum(id)
         .then((data)=>{
-            data.M_NUM = medicine.M_NUM;
             data.M_NAME = medicine.M_NAME;
             data.M_CORP = medicine.M_CORP;
             data.M_TYPE = medicine.M_TYPE ;
