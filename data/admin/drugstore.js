@@ -1,4 +1,4 @@
-import { Drugstore } from '../../db/admin/drugstore.js';
+import { Drugstore } from '../../db/drugstore.js';
 import {Op} from 'sequelize';
 
 // 생성
