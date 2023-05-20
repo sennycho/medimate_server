@@ -39,10 +39,11 @@ export async function create(qna) {
     return QNA.create(qna).then((data) => data.dataValues.Q_NUM)
 }
 
-export async function update(Q_NUM, Q_CONTENT) {
+export async function update(Q_NUM, Q_CONTENT,Q_ANSWER) {
     return QNA.findOne({ where: { Q_NUM } })
         .then((data) => {
             data.Q_CONTENT = Q_CONTENT
+            data.Q_ANSWER = Q_ANSWER
             return data.save()
         })
 }
