@@ -1,5 +1,5 @@
 import express from 'express'
-import * as a from '../../controller/admin/medicine.js'
+import * as a from '../../controller/main/medicine.js'
 
 
 const app = express()
@@ -16,9 +16,6 @@ const router = express.Router()
 router.get('/',a.SearchMedicineAll)
 router.get('/:id',a.SearchMedicineOne)
 
-router.post('/',a.MakeMedicinine)
-router.put('/:id',a.ChangeMedicine)
-router.delete('/:id',a.DeleteMedicine)
 
 router.put('/',(req, res) => {
     return null

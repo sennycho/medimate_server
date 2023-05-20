@@ -65,7 +65,7 @@ export async function updateDrugstore(req, res){
     if (!result) {
         res.status(402).json(result)
     } else {
-        res.status(200).json(result)
+        res.status(200).json({message:`${P_NAME} 수정 완료`})
     }
 };
 
@@ -74,5 +74,5 @@ export async function updateDrugstore(req, res){
 export async function deleteDrugstore(req,res){
     const num = req.params.id;
     const result = await dataRepository.remove(num)
-        res.status(200).json(result)
+        res.status(200).json({message:`분류번호 : ${num} 삭제 완료`})
 };
