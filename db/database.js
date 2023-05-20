@@ -7,6 +7,6 @@ export const sequelize = new SQ.Sequelize(database, user, password, {
     host,
     dialect: 'mysql',
     logging: false,
-    timezone:"Asia/Seoul"
+    timezone:"Asia/Seoul",
     port: '31317'
 });
