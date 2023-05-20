@@ -1,19 +1,20 @@
 import express from 'express';
 import * as AnnounceController from '../../controller/admin/announcement.js';
+import { isAuth } from '../../middleware/token.js'
 
 const router = express.Router();
 
 
-router.post('/', AnnounceController.createAnnounce);
+router.post('/', isAuth,AnnounceController.createAnnounce);
 
-router.get('/:id', AnnounceController.searchAnnounceNum);
+router.get('/:id',isAuth, AnnounceController.searchAnnounceNum);
 
-router.get('/:id', AnnounceController.searchAnnounceByTitle);
+router.get('/:id',isAuth, AnnounceController.searchAnnounceByTitle);
 
-router.get('/', AnnounceController.getAllAnnounce);
+router.get('/', isAuth,AnnounceController.getAllAnnounce);
 
-router.put('/:id', AnnounceController.updateAnnounce);
+router.put('/:id', isAuth,AnnounceController.updateAnnounce);
 
-router.delete('/:id', AnnounceController.deleteAnnounce);
+router.delete('/:id',isAuth, AnnounceController.deleteAnnounce);
 
 export default router;

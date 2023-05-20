@@ -37,6 +37,7 @@ export async function getByUNum(U_NUM){
 export async function getByAnnounceNum(A_NUM){
     return Announcement.findByPk(A_NUM)
 }
+
 // 공지사항 제목으로 찾기
 export async function getByTitle(A_TITLE){
     return Announcement.findAll({ where: { A_TITLE}});
@@ -56,8 +57,8 @@ export async function getAll(page){
 }
 
 // 수정
-export async function update(id, td_announcement){
-    return Announcement.findByPk(id)
+export async function update(A_NUM, td_announcement){
+    return Announcement.findByPk(A_NUM)
     .then((oldAnnounce) => {
             oldAnnounce.A_TITLE = td_announcement.A_TITLE;
             oldAnnounce.A_CONTENT = td_announcement.A_CONTENT;
@@ -65,11 +66,7 @@ export async function update(id, td_announcement){
     });
 }
 
-
 // 삭제
 export async function remove(A_NUM){
-    return Announcement.findByPk(A_NUM)
-    .then((Announcement) => {
-        Announcement.destroy();
-    });
-}
+        return Announcement.findByPk(A_NUM).then((data)=>{data.destroy()})
+    }

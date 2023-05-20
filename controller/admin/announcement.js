@@ -67,9 +67,8 @@ export async function updateAnnounce(req, res){
     const A_NUM = req.params.id;
     const {A_TITLE,A_CONTENT} = req.body;
     const found = await dataRepository.getByAnnounceNum(A_NUM);
-    
     if (found) {
-        const result = await dataRepository.update({A_TITLE, A_CONTENT});
+        const result = await dataRepository.update(A_NUM, {A_TITLE, A_CONTENT});
         res.status(200).json(result)
     } else {
         res.status(402).json({message: `공지사항 수정오류`})
@@ -83,7 +82,7 @@ export async function deleteAnnounce(req,res){
     const found = await dataRepository.getByAnnounceNum(A_NUM);
 
     if(found){
-        await calendarRepository.remove(A_NUM);
+        await dataRepository.remove(A_NUM);
         res.sendStatus(204);
     }else{
         res.status(404).json({ message: `공지사항 삭제오류`});
