@@ -44,7 +44,7 @@ export async function ChangeQna(req, res, next) {
     const Q_NUM = req.params.id
     const { Q_CONTENT } = req.body
     const Q_ANSWER = true
-    const validator = await qnaRepository.findByNum(pNum)
+    const validator = await qnaRepository.findByNum(Q_NUM)
     if (!validator){
         res.status(402).json({message: `${Q_NUM}은 없는 고유 번호입니다.`})
     }else{

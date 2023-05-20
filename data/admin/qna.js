@@ -26,8 +26,8 @@ export async function getByUName(Q_TITLE, page) {
     });
 }
 
-export async function findByNum(U_NUM) {
-    return QNA.findOne({ where: { U_NUM } }).then((data) => data.dataValues)
+export async function findByNum(Q_NUM) {
+    return QNA.findOne({ where: { Q_NUM } })
 }
 
 export async function findByName(U_NUM) {
