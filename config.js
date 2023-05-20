@@ -1,4 +1,6 @@
 import dotenv from 'dotenv';
+import cors from 'cors'
+
 dotenv.config();
 function required(key, defaultvalue = undefined) {
     const value = process.env[key] || defaultvalue;
@@ -24,5 +26,9 @@ export const config = {
         user: required('DB_USER'),
         database: required('DB_DATABASE'),
         password: required('DB_PASSWORD')
+    },
+    port:parseInt(required('PORT', 8080)),
+    cors: {
+        allowedOrigin: required('CORS_ALLOW_ORIGIN')
     }
 }

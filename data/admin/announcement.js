@@ -27,23 +27,19 @@ export async function insert(info){
     .then((data) => data.dataValues.U_NUM);
 }
 
+// UNUM으로 찾기
+export async function getByUNum(U_NUM){
+    return Announcement.findAll({ where: { U_NUM }});
+}
+
 
 // 공지사항번호로 찾기
 export async function getByAnnounceNum(A_NUM){
     return Announcement.findByPk(A_NUM)
 }
 // 공지사항 제목으로 찾기
-export async function getByTitle(A_TITLE, page){
-    let limit = 10;
-    let offset = (page - 1) * limit;
-    return Announcement.findAndCountAll({
-        limit,
-        offset,
-        order: [
-            ['A_NUM', 'DESC']
-        ],
-        where: { A_TITLE: { [Op.like]: `%${A_TITLE}%` } }
-    });
+export async function getByTitle(A_TITLE){
+    return Announcement.findAll({ where: { A_TITLE}});
 }
 
 // 전체 출력 (페이지네이션 기능 추가)
