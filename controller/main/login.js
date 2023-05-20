@@ -20,7 +20,7 @@ export async function login(req, res){
     if(!isValidpassword){
         return res.status(401).json({message: '아이디 또는 비밀번호를 확인하세요'});
     }
-    const token = createJwtToken(user.U_ID);
+    const token = createJwtToken(user.U_NUM);
     res.status(200).json({token, U_ID});
 
 }

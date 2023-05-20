@@ -1,5 +1,5 @@
-import { Announcement } from '../../db/admin/announcement.js';
-import { User } from '../../db/admin/user.js';
+import { Announcement } from '../../db/announcement.js';
+import { User } from '../../db/user.js';
 import { Sequelize } from 'sequelize';
 import {Op} from 'sequelize';
 
