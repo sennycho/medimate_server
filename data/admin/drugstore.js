@@ -42,10 +42,9 @@ export async function getAll(page){
 
 
 // 수정
-export async function update(id, td_pharm){
-    return Drugstore.findByPk(id)
+export async function update(P_NUM, td_pharm){
+    return Drugstore.findByPk(P_NUM)
     .then((oldDrug) => {
-        oldDrug.P_NUM = td_pharm.P_NUM;
         oldDrug.P_NAME = td_pharm.P_NAME;
         oldDrug.P_ADDRESS = td_pharm.P_ADDRESS;
         oldDrug.P_PHONE = td_pharm.P_PHONE;

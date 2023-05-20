@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+
 dotenv.config();
 function required(key, defaultvalue = undefined) {
     const value = process.env[key] || defaultvalue;

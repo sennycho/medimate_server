@@ -1,13 +1,19 @@
 import express from 'express';
 import qnaRouter from './qna.js'
 import shareRouter from './share.js'
-import {isAuth} from '../../middleware/token.js'
-
+import withdrawalRouter from './withdrawal.js'
+import pwRouter from './pw.js'
+import infoRouter from './info.js'
+import calendarRouter from './calendar.js'
 
 const router = express.Router();
 
 router.use('/qna',qnaRouter);
 router.use('/share', shareRouter);
+router.use('/withdrawal',withdrawalRouter)
+router.use('/pw',pwRouter)
+router.use('/info',infoRouter)
+router.use('/calendar',calendarRouter)
 
 
 router.get('/',(req,res)=>{
