@@ -26,7 +26,7 @@ export async function SearchQnaOne(req, res, next) {
 };
 
 export async function MakeQna(req, res, next) {
-    const uNum = req.params.id
+    const uNum = req.U_NUM
     const { Q_TITLE } = req.body
 
     const result = await qnaRepository.create({

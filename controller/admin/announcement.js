@@ -53,7 +53,7 @@ export async function getAllAnnounce(req,res){
     const page  = req.query.page || 1
     const { A_TITLE } = req.body
     const datas = await (A_TITLE 
-        ? dataRepository.getByUNum(U_NUM)
+        ? dataRepository.getByTitle(A_TITLE, page)
         : dataRepository.getAll(page))
     if (!datas) {
         res.status(400).json({message: `공지사항 전체출력오류`})
