@@ -9,8 +9,6 @@ router.post('/', isAuth,AnnounceController.createAnnounce);
 
 router.get('/:id',isAuth, AnnounceController.searchAnnounceNum);
 
-router.get('/:id',isAuth, AnnounceController.searchAnnounceByTitle);
-
 router.get('/', isAuth,AnnounceController.getAllAnnounce);
 
 router.put('/:id', isAuth,AnnounceController.updateAnnounce);

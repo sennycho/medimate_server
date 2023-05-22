@@ -16,15 +16,15 @@ export async function getAll(page) {
 }
 
 export async function getByUName(Total, page) {
-    let limit = 10;
-    let offset = (page - 1) * limit;
-    return Medicine.findAndCountAll({
-        limit,
-        offset,
-        order: [
-            ['M_NUM', 'DESC']
-        ],
-        where: {
+        let limit = 10;
+        let offset = (page - 1) * limit;
+        return Medicine.findAndCountAll({
+            limit,
+            offset,
+            order: [
+                ['M_NUM', 'DESC']
+            ],
+            where: {
             M_NUM: { [Op.like]: `%${Total.M_NUM}%` },
             M_NAME: { [Op.like]: `%${Total.M_NAME}%` },
             M_CORP: { [Op.like]: `%${Total.M_CORP}%` },

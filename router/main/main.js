@@ -5,6 +5,7 @@ import joinRouter from './join.js'
 import medicineRouter from './medicine.js'
 import mypageRouter from './mypage.js'
 import calendarRouter from './calendar.js'
+import pharmRouter from './pharm.js'
 
 const router = express.Router();
 
@@ -13,5 +14,6 @@ router.use('/join', joinRouter);
 router.use('/medicine',medicineRouter);
 router.use('/mypage',mypageRouter);
 router.use('/calendar',calendarRouter)
+router.use('/pharm',pharmRouter)
 
 export default router;

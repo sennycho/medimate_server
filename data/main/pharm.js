@@ -1,8 +1,8 @@
-import { Drugstore } from '../../db/main/pharm.js';
+import { Drugstore } from '../../db/drugstore.js';
 import {Op} from 'sequelize';
 
-// 약국이름으로 찾기 출력
-export async function getDrugName(P_NAME, page){
+// 약국정보로 찾기 출력
+export async function getByDrugInfo(total, page){
     let limit = 10;
     let offset = (page - 1) * limit;
     return Drugstore.findAndCountAll({
@@ -11,8 +11,9 @@ export async function getDrugName(P_NAME, page){
         order: [
             ['P_NUM', 'DESC']
         ],
-        where: { P_NAME: { [Op.like]: `%${P_NAME}%` } }
-    });
+        where: {
+        P_ADDRESS: {[Op.like]: `%${total.P_ADDRESS}%`},
+        P_NAME: {[Op.like]: `%${total.P_NAME}%`}}})
 }
 
 // 전체 출력 (페이지네이션 기능 추가)
@@ -24,6 +25,7 @@ export async function getAll(page){
         offset,
         order: [
             ['P_NUM', 'DESC']
-        ]
+        ],
+        where: { P_ADDRESS: { [Op.like]: `%${P_ADDRESS}%` } }
     });
 }
