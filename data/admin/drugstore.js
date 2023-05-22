@@ -9,18 +9,10 @@ export async function insert(info){
 
 
 // 약국이름으로 찾기
-export async function getByDrugName(P_NAME, page){
-    let limit = 10;
-    let offset = (page - 1) * limit;
-    return Drugstore.findAndCountAll({
-        limit,
-        offset,
-        order: [
-            ['P_NUM', 'DESC']
-        ],
-        where: { P_NAME: { [Op.like]: `%${P_NAME}%` } }
-    });
+export async function getByDrugName(P_NAME){
+    return Drugstore.findOne({where:{P_NAME}})
 }
+
 
 // 약국번호로 찾기
 export async function getByDrugNum(P_NUM){
