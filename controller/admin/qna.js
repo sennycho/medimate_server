@@ -26,11 +26,11 @@ export async function SearchQnaOne(req, res, next) {
 };
 
 export async function MakeQna(req, res, next) {
-    const uNum = req.U_NUM
-    const { Q_TITLE } = req.body
+    const uNum = req.body.U_NUM
+    const { Q_CONTENT } = req.body
 
     const result = await qnaRepository.create({
-        Q_TITLE,
+        Q_CONTENT,
         U_NUM:uNum
     })
     if (!result) {
@@ -41,7 +41,7 @@ export async function MakeQna(req, res, next) {
 }
 
 export async function ChangeQna(req, res, next) {
-    const Q_NUM = req.params.id
+    const { Q_NUM } = req.body
     const { Q_CONTENT } = req.body
     const Q_ANSWER = true
     const validator = await qnaRepository.findByNum(Q_NUM)
@@ -59,7 +59,7 @@ export async function ChangeQna(req, res, next) {
 }
 
 export async function DeleteQna(req,res,next){
-    const Q_NUM = req.params.id
+    const Q_NUM = req.body.Q_NUM;
     const validator = await qnaRepository.findByNum(Q_NUM)
     if (!validator){
         res.status(402).json({message: `${Q_NUM}은 없는 고유 번호입니다.`})
