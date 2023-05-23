@@ -21,8 +21,8 @@ export async function createDrugstore(req, res, next){
 
 //  약국이름으로 찾기
 export async function searchDrugName(req,res,next){
-    const {P_NAME} = req.body;
-    const result = await (P_NUM
+    const P_NAME = req.query.P_NAME;
+    const result = await (P_NAME
         ? dataRepository.getByDrugName(P_NAME, page)
         : dataRepository.getAll(page));
     if (result) {
@@ -47,7 +47,7 @@ export async function searchDrugNum(req, res, next) {
 // 전체 출력 (페이지네이션 추가)
 export async function getAllDrugstore(req,res){
     const page  = req.query.page || 1
-    const { P_NAME } = req.body
+    const P_NAME = req.query.P_NAME;
     const result = await (P_NAME 
         ? dataRepository.getByDrugName(P_NAME,page)
         : dataRepository.getAll(page))
@@ -59,7 +59,9 @@ export async function getAllDrugstore(req,res){
 };
 
 // 수정
-export async function updateDrugstore(req, res){    const P_NUM = req.params.id;
+export async function updateDrugstore(req, res){
+    const P_NUM = req.params.id;
+    console.log(P_NUM);
     const {P_NAME,P_ADDRESS,P_PHONE,P_MON_S,P_MON_C,P_TUE_S,P_TUE_C,P_WED_S,P_WED_C,P_THU_S,P_THU_C,P_FRI_S,P_FRI_C,P_SAT_S,P_SAT_C,P_SUN_S,P_SUN_C,P_HOLI_S,P_HOLI_C,P_LATI,P_LONGI} = req.body;
     const found = await dataRepository.getByDrugNum(P_NUM);
     if (found) {
