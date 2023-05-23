@@ -3,7 +3,7 @@ import * as adminUserRepository from '../../data/admin/user.js';
 
 export async function showAll(req, res){
     const page = req.query.page || 1;
-    const { U_NAME } = req.body;
+    const U_NAME = req.query.U_NAME;
 
     const datas = await (U_NAME
         ? adminUserRepository.getByUName(U_NAME, page)
