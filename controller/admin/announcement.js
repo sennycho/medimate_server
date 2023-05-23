@@ -37,7 +37,7 @@ export async function searchAnnounceNum(req, res, next) {
 export async function getAllAnnounce(req,res){
     const page  = req.query.page || 1
     const {A_TITLE} = req.body;
-    const result = await (A_NUM
+    const result = await (A_TITLE
         ? dataRepository.getByTitle(A_TITLE, page)
         : dataRepository.getAll(page));
     if (!result) {
