@@ -2,7 +2,7 @@ import * as medicineRepository from '../../data/admin/medicine.js'
 
 export async function SearchMedicineAll(req, res, next) {
     const page  = req.query.page || 1
-    const { M_NAME } = req.body
+    const M_NAME  = req.query.M_NAME
 
     const datas = await (M_NAME 
         ? medicineRepository.getByUName(M_NAME,page)
