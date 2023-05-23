@@ -8,13 +8,13 @@ app.use(express.json())
 const router = express.Router()
 
 
-router.get('/',QNA.SearchQnaAll)
+router.get('/',isAuth,QNA.SearchQnaAll)
 router.get('/:id',QNA.SearchQnaOne)
 
 
-router.post('/',isAuth,QNA.MakeQna)
+router.post('/',isAuth,QNA.ChangeQna)
 
-router.put('/:id',QNA.ChangeQna)
+router.put('/',QNA.ChangeQna)
 
 
 export default router; 
