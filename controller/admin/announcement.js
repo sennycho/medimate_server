@@ -23,8 +23,8 @@ export async function createAnnounce(req, res, next){
 
 // 공지사항번호로 찾기
 export async function searchAnnounceNum(req, res, next) {
-    const P_NUM = req.params.id
-    const result = await dataRepository.getByAnnounceNum(P_NUM)
+    const A_NUM = req.params.id
+    const result = await dataRepository.getByUName2(A_NUM)
     if (result) {
         res.status(200).json(result)
     } else {
@@ -36,7 +36,7 @@ export async function searchAnnounceNum(req, res, next) {
 // 전체 출력
 export async function getAllAnnounce(req,res){
     const page  = req.query.page || 1
-    const {A_TITLE} = req.body;
+    const {A_TITLE} = req.query;
     const result = await (A_TITLE
         ? dataRepository.getByTitle(A_TITLE, page)
         : dataRepository.getAll(page));
