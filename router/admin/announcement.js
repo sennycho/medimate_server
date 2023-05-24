@@ -7,10 +7,11 @@ const router = express.Router();
 
 router.post('/', isAuth,AnnounceController.createAnnounce);
 
-router.get('/:id',isAuth, AnnounceController.searchAnnounceNum);
+router.get('/:id',AnnounceController.searchAnnounceNum);
 
-// router.get('/', isAuth,AnnounceController.getAllAnnounce);
 router.get('/', AnnounceController.getAllAnnounce);
+
+router.get('/write')
 
 router.put('/:id', isAuth,AnnounceController.updateAnnounce);
 

@@ -2,7 +2,7 @@ import * as qnaRepository from '../../data/admin/qna.js'
 
 export async function SearchQnaAll(req, res, next) {
     const page  = req.query.page || 1
-    const { Q_TITLE } = req.body
+    const { Q_TITLE } = req.query
 
     const datas = await (Q_TITLE
         ? qnaRepository.getByUName(Q_TITLE,page)
@@ -16,8 +16,8 @@ export async function SearchQnaAll(req, res, next) {
 };
 
 export async function SearchQnaOne(req, res, next) {
-    const pNum = req.params.id
-    const result = await qnaRepository.findByNum(pNum)
+    const {Q_TITLE} = req.query
+    const result = await qnaRepository.findByNum(Q_TITLE)
     if (!result) {
         res.status(400).json(result)
     } else {
