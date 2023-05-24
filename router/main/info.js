@@ -7,8 +7,8 @@ const router = express.Router();
 
 
 
-
-router.get('/',isAuth)
+// isAuth
+router.get('/',isAuth,INFO.showUserInfo)
 router.put('/',isAuth,INFO.updateUserInfo)
 
 
