@@ -20,8 +20,8 @@ export const Announcement = sequelize.define(
             allowNull: false
         },
         A_DATE: {
-            type: DataTypes.STRING(50),
-            allowNull: false
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
         },
         A_CONTENT: {
             type: DataTypes.STRING(500),
