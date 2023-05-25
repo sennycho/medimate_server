@@ -11,7 +11,7 @@ export const INCLUDE_USER = {
         'A_DATE',
         'A_CONTENT',
         'U_NUM',
-        // user테이블의 U_NAME 컬럼을 join
+
         [sequelize.col('tb_user.U_NAME'), 'U_NAME']
     ],
     include: {
@@ -37,6 +37,21 @@ export async function getByUNum(U_NUM){
     }
 });
 }
+
+//이름같이 나오는게 왜 없나요....
+export async function getByUName2(A_NUM){
+    let limit = 10;
+    return Announcement.findAndCountAll({
+        ...INCLUDE_USER,
+        limit,
+        order: [
+            ['A_NUM', 'DESC']
+        ],
+        where: { A_NUM: { [Op.like]: `%${A_NUM}%` } }
+    });
+}
+
+
 
 // UNAME으로 찾기
 export async function getByUName(A_TITLE, page){
