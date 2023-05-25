@@ -1,10 +1,21 @@
 import { Op } from 'sequelize';
 import { User } from '../../db/user.js';
 
+const INCLUDE_USER = {
+    attributes: [
+        'U_NUM',
+        'U_ID',
+        'U_NAME',
+        'U_EMAIL',
+        'U_HP'
+    ]
+}
+
 export async function getAll(page){
     let limit = 10;
     let offset = (page - 1) * limit;
     return User.findAndCountAll({
+        ...INCLUDE_USER,
         limit,
         offset,
         order: [
@@ -17,6 +28,7 @@ export async function getByUName(U_NAME, page){
     let limit = 10;
     let offset = (page - 1) * limit;
     return User.findAndCountAll({
+        ...INCLUDE_USER,
         limit,
         offset,
         order: [
@@ -27,7 +39,7 @@ export async function getByUName(U_NAME, page){
 }
 
 export async function getByUNum(U_NUM){
-    return User.findByPk(U_NUM);
+    return User.findByPk(U_NUM, INCLUDE_USER);
 }
 
 export async function insert(user){

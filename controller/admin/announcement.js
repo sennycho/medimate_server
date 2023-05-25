@@ -2,14 +2,13 @@ import * as dataRepository from '../../data/admin/announcement.js';
 
 
 // 생성 (어디가 문제?)
-export async function createAnnounce(req, res, next){
+export async function createAnnounce(req, res){
     // body에 존재하는 id, name, ph, email, address를 선언
     const U_NUM = req.U_NUM;
-    const {A_TITLE,A_DATE,A_CONTENT} = req.body;
+    const {A_TITLE,A_CONTENT} = req.body;
     const result = await dataRepository.insert({
         U_NUM,
         A_TITLE,
-        A_DATE,
         A_CONTENT
     })
     if (result) {
@@ -22,7 +21,7 @@ export async function createAnnounce(req, res, next){
 
 
 // 공지사항번호로 찾기
-export async function searchAnnounceNum(req, res, next) {
+export async function searchAnnounceNum(req, res) {
     const P_NUM = req.params.id
     const result = await dataRepository.getByAnnounceNum(P_NUM)
     if (result) {
@@ -36,7 +35,7 @@ export async function searchAnnounceNum(req, res, next) {
 // 전체 출력
 export async function getAllAnnounce(req,res){
     const page  = req.query.page || 1
-    const {A_TITLE} = req.body;
+    const A_TITLE = req.query.A_TITLE;
     const result = await (A_TITLE
         ? dataRepository.getByTitle(A_TITLE, page)
         : dataRepository.getAll(page));
@@ -64,9 +63,8 @@ export async function updateAnnounce(req, res){
 
 // 삭제
 export async function deleteAnnounce(req,res){
-    const A_NUM = req.query.A_NUM;
+    const A_NUM = req.params.id;
     const found = await dataRepository.getByAnnounceNum(A_NUM);
-
     if(found){
         await dataRepository.remove(A_NUM);
         res.sendStatus(204);

@@ -2,7 +2,7 @@ import * as qnaRepository from '../../data/admin/qna.js'
 
 export async function SearchQnaAll(req, res, next) {
     const page  = req.query.page || 1
-    const { Q_TITLE } = req.body
+    const Q_TITLE = req.query.Q_TITLE;
 
     const datas = await (Q_TITLE
         ? qnaRepository.getByUName(Q_TITLE,page)

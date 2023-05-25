@@ -56,7 +56,7 @@ export async function getByUName(A_TITLE, page){
 
 // 공지사항번호로 찾기
 export async function getByAnnounceNum(A_NUM){
-    return Announcement.findByPk(A_NUM)
+    return Announcement.findByPk(A_NUM, INCLUDE_USER)
 }
 
 // 공지사항 제목으로 찾기
@@ -80,6 +80,7 @@ export async function getAll(page){
     let limit = 10;
     let offset = (page - 1) * limit;
     return Announcement.findAndCountAll({
+        ...INCLUDE_USER,
         limit,
         offset,
         order: [

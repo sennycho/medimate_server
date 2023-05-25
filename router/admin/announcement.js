@@ -7,13 +7,12 @@ const router = express.Router();
 
 router.post('/', isAuth,AnnounceController.createAnnounce);
 
-router.get('/:id',isAuth, AnnounceController.searchAnnounceNum);
-
-// router.get('/', isAuth,AnnounceController.getAllAnnounce);
 router.get('/', AnnounceController.getAllAnnounce);
+
+router.get('/:id',  AnnounceController.searchAnnounceNum);
 
 router.put('/:id', isAuth,AnnounceController.updateAnnounce);
 
-router.delete('/',isAuth, AnnounceController.deleteAnnounce);
+router.delete('/:id', AnnounceController.deleteAnnounce);
 
 export default router;
