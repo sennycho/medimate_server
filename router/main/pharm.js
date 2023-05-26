@@ -7,6 +7,6 @@ app.use(express.json())
 
 const router = express.Router();
 
-router.get('/', isAuth,DrugstoreController.SearchDrugInfo);
+router.get('/',DrugstoreController.SearchDrugInfo);
 
 export default router;
