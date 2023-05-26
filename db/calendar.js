@@ -25,12 +25,10 @@ export const Calendar = sequelize.define(
             type: DataTypes.DATE
         },
         C_CONTENT: {
-            type: DataTypes.STRING(256),
-            allowNull: false
+            type: DataTypes.STRING(256)
         },
         C_ALARM: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false
+            type: DataTypes.BOOLEAN
         },
     },
     { timestamps: false, freezeTableName: true }
