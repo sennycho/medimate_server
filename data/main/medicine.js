@@ -3,7 +3,7 @@ import { Medicine } from "../../db/medicine.js"
 
 //Pagnation
 export async function getAll(page) {
-    let limit = 10;
+    let limit = 8;
     let offset = (page - 1) * limit;
     return Medicine.findAndCountAll({
         limit,
@@ -16,7 +16,7 @@ export async function getAll(page) {
 }
 
 export async function getByUName(Total, page) {
-        let limit = 10;
+        let limit = 8;
         let offset = (page - 1) * limit;
         return Medicine.findAndCountAll({
             limit,
