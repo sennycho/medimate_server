@@ -18,7 +18,7 @@ export async function login(req, res){
     }
     const isValidpassword = await bcrypt.compare(U_PW, user.U_PW);
     if(!isValidpassword){
-        return res.status(401).json({message: '아이디 또는 비밀번호를 확인하세요'});
+        return res.status(402).json({message: '아이디 또는 비밀번호를 확인하세요'});
     }
     const token = createJwtToken(user.U_NUM);
     res.status(200).json({token, U_ID});
