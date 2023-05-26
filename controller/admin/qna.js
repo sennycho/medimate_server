@@ -46,12 +46,12 @@ export async function ChangeQna(req, res, next) {
     const Q_ANSWER = true
     const validator = await qnaRepository.findByNum(Q_NUM)
     if (!validator){
-        res.status(402).json({message: `${Q_NUM}은 없는 고유 번호입니다.`})
+        res.status(405).json({message: `${Q_NUM}은 없는 고유 번호입니다.`})
     }else{
     const result = await qnaRepository.update(Q_NUM ,Q_CONTENT,Q_ANSWER)
     
     if (!result) {
-        res.status(402).json(result)
+        res.status(404).json(result)
     } else {
         res.status(200).json(result)
     }

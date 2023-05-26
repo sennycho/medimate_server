@@ -11,7 +11,6 @@ router.get('/:id',AnnounceController.searchAnnounceNum);
 
 router.get('/', AnnounceController.getAllAnnounce);
 
-router.get('/write')
 
 router.put('/:id', isAuth,AnnounceController.updateAnnounce);
 

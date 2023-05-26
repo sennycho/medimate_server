@@ -6,7 +6,6 @@ import {isAuth} from '../../middleware/token.js'
 const router = express.Router();
 
 
-
 // isAuth
 router.get('/',isAuth,INFO.showUserInfo)
 router.put('/',isAuth,INFO.updateUserInfo)
