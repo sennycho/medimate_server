@@ -9,14 +9,14 @@ export async function getByNum(A_NUM){
 }
 
 // 제목으로 찾기 출력
-export async function getByTitle({A_TITLE}, page){
+export async function getByTitle(A_TITLE, page){
     let limit = 10;
     let offset = (page - 1) * limit;
     return Announcement.findAndCountAll({
         limit,
         offset,
         order: [
-            ['U_NUM', 'DESC']
+            ['A_NUM', 'DESC']
         ],
         where: { A_TITLE: { [Op.like]: `%${A_TITLE}%` } }
     });
@@ -26,11 +26,11 @@ export async function getByTitle({A_TITLE}, page){
 export async function getAll(page){
     let limit = 10;
     let offset = (page - 1) * limit;
-    return User.findAndCountAll({
+    return Announcement.findAndCountAll({
         limit,
         offset,
         order: [
-            ['U_NUM', 'DESC']
+            ['A_NUM', 'DESC']
         ]
     });
 }
@@ -39,7 +39,7 @@ export async function getAll(page){
 export async function getByUName(A_TITLE, page){
     let limit = 10;
     let offset = (page - 1) * limit;
-    return QNA.findAndCountAll({
+    return Announcement.findAndCountAll({
         ...INCLUDE_USER,
         limit,
         offset,

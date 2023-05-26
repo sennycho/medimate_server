@@ -1,5 +1,8 @@
 import { User } from "../../../db/user.js"
 
+export async function getUser(U_NUM){
+    return User.findByPk(U_NUM);
+}
 
 // 회원정보 수정
 export async function updateUser(U_NUM,NEW_DATA){

@@ -2,9 +2,7 @@ import * as qnaRepository from '../../../data/main/mypage/qna.js'
 
 export async function SearchQnaAll(req, res, next) {
     const page  = req.query.page || 1
-    const { Q_TITLE } = req
-    
-
+    const { Q_TITLE } = req.query
     const datas = await (Q_TITLE
         ? qnaRepository.getByUName(Q_TITLE,page)
         : qnaRepository.getAll(page))
@@ -26,6 +24,9 @@ export async function SearchQnaOne(req, res, next) {
     }
 };
 
+
+
+
 export async function MakeQna(req, res, next) {
     const { Q_TITLE } = req.body
 
@@ -34,8 +35,8 @@ export async function MakeQna(req, res, next) {
         U_NUM:req.U_NUM
     })
     if (!result) {
-        res.status(402).json(result)
+        res.status(402).json({message: `실패`})
     } else {
-        res.status(200).json({message: `${result}번째 문의사항 등록 완료`})
+        res.status(200).json({success: `${result}번째 문의사항 등록 완료`})
     }
 }
