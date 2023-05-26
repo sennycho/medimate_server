@@ -2,7 +2,7 @@ import { Op } from "sequelize"
 import { QNA } from '../../../db/qna.js';
 
 export async function getAll(page) {
-    let limit = 10;
+    let limit = 6;
     let offset = (page - 1) * limit;
     return QNA.findAndCountAll({
         limit,
@@ -14,7 +14,7 @@ export async function getAll(page) {
 }
 
 export async function getByUName(Q_TITLE, page) {
-    let limit = 10;
+    let limit = 6;
     let offset = (page - 1) * limit;
     return QNA.findAndCountAll({
         limit,
@@ -26,8 +26,17 @@ export async function getByUName(Q_TITLE, page) {
     });
 }
 
-export async function findByNum(U_NUM) {
-    return QNA.findAll({ where: { U_NUM } }).then((data) => data)
+export async function findByNum(U_NUM, page) {
+    let limit = 6;
+    let offset = (page - 1) * limit;
+    return QNA.findAndCountAll({
+        limit,
+        offset,
+        order: [
+            ['Q_NUM', 'DESC']
+        ],
+        where: { U_NUM }
+    });
 }
 
 export async function findByName(U_NUM) {

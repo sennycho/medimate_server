@@ -54,7 +54,7 @@ import { Medicine } from "../../db/medicine.js";
             data.M_AXIS_LONG = medicine.M_AXIS_LONG;
             data.M_AXIS_SHORT = medicine.M_AXIS_SHORT;
             data.M_THICKNESS = medicine.M_THICKNESS;
-            data.M_IMAGE = medicine.M_IMAGE;
+            data.M_IMAGE = medicine.M_IMAGE || data.M_IMAGE;
             return data.save()
         })
 }

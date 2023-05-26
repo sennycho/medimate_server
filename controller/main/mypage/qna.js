@@ -16,7 +16,8 @@ export async function SearchQnaAll(req, res, next) {
 
 export async function SearchQnaOne(req, res, next) {
     const U_NUM = req.U_NUM
-    const result = await qnaRepository.findByNum(U_NUM)
+    const page = req.query.page;
+    const result = await qnaRepository.findByNum(U_NUM, page)
     if (!result) {
         res.status(400).json(result)
     } else {

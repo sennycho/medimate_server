@@ -5,7 +5,10 @@ import {Op} from 'sequelize';
 
 // 부분 출력
 export async function getByNum(A_NUM){
-    return Announcement.findOne( {where: { A_NUM }});
+    return Announcement.findOne({
+        ...INCLUDE_USER,
+        where: { A_NUM }
+    });
 }
 
 // 제목으로 찾기 출력
@@ -13,6 +16,7 @@ export async function getByTitle(A_TITLE, page){
     let limit = 10;
     let offset = (page - 1) * limit;
     return Announcement.findAndCountAll({
+        ...INCLUDE_USER, 
         limit,
         offset,
         order: [
@@ -27,6 +31,7 @@ export async function getAll(page){
     let limit = 10;
     let offset = (page - 1) * limit;
     return Announcement.findAndCountAll({
+        ...INCLUDE_USER, 
         limit,
         offset,
         order: [
